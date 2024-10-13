@@ -12,6 +12,13 @@ export default class Calculator {
 
 
     parseString(str: string): number[] {
+
+        if (str.startsWith("//")) {
+            const delimiter = str[2];
+            const input = str.split("\n")[1];
+            return input.split(delimiter).map(num => parseInt(num));
+        }
+        
         return str.split(/[,/\n]/).map(num => parseInt(num));
     }
 }
