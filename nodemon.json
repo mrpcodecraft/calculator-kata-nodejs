@@ -1,5 +1,6 @@
 {
     "restartable": "rs",
     "ext": "js,ts,json",
-    "watch": ["./src"]
+    "watch": ["./"],
+    "exclude": ["./node_modules"]
 }
