@@ -3,7 +3,7 @@ import {expect} from 'chai';
 import Calculator from './calculator';
 
 describe("Test cases for calculator", () => {
-    const add = (str: String): number => {
+    const add = (str: string): number => {
         const calculator = new Calculator();
         
         return calculator.add(str);
