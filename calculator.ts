@@ -33,7 +33,7 @@ export default class Calculator {
         }
 
         if (negatives.length > 0) {
-            throw new Error("Negative numbers not allowed: " + negatives.join(","));
+            throw new Error("Negative numbers not allowed: " + negatives.join(", "));
         }
 
         return numbers;
