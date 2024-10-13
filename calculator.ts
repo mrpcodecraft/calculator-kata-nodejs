@@ -12,31 +12,64 @@ export default class Calculator {
 
 
     parseString(str: string): number[] {
+        if (!str) return [0];
+
         let numbers: number[] = [];
-
         let negatives: number[] = [];
+        
+        let delimiters: string[] = this.fetchDelimiters(str);
+        
+        str = this.fetchFinalString(str, delimiters);
 
-        if (str.startsWith("//")) {
-            const delimiter = str[2];
-            const input = str.split("\n")[1];
-            input.split(delimiter).map((num) => {
-                let parsed: number = parseInt(num);
+        str.split(',').map((num) => {
+            let parsed: number = parseInt(num);
 
-                if (parsed < 0) {
-                    negatives.push(parsed);
-                } else {
-                    numbers.push(parsed);
-                }
-            });
-        } else {
-            numbers = str.split(/[,/\n]/).map(num => parseInt(num));
-        }
-
+            if (parsed < 0) {
+                negatives.push(parsed);
+            } else {
+                numbers.push(parsed);
+            }
+        });
         if (negatives.length > 0) {
             throw new Error("Negative numbers not allowed: " + negatives.join(", "));
         }
 
         return numbers;
-        
     }
+
+    fetchDelimiters(str: string): string[] {
+        let delimiters: string[] = [];
+        
+        if (str.startsWith("//")) {
+            delimiters = str.match(/(?<=\[)[^\r\n]*?(?=\])/g) || [];
+
+            if (delimiters.length === 0) {
+                delimiters = [str.charAt(2)];
+            }
+        }
+        
+        delimiters = [
+            ...delimiters,
+            '\n',
+        ];
+
+        return delimiters;
+    }
+
+    fetchFinalString(str: string, delimiters: string[]): string {
+        let values: string[] = str.split('\n');
+
+        if (delimiters.length > 1) {
+            values.shift();
+        }
+        
+        str = values.join(',');
+
+        for(let delimiter of delimiters) {
+            str = str.split(delimiter).join(',');
+        }
+
+        return str;
+    }
+
 }
