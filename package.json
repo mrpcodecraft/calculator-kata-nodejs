@@ -1,0 +1,27 @@
+{
+  "name": "calculator-kata-nodejs",
+  "version": "1.0.0",
+  "description": "Calculator kata project for nodejs",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.ts",
+    "test": "mocha"
+  },
+  "keywords": [
+    "Calculator",
+    "kata"
+  ],
+  "author": "Mohit Raj Panday",
+  "license": "ISC",
+  "dependencies": {
+    "@types/chai": "^4.3.16",
+    "@types/mocha": "^10.0.7",
+    "@types/node": "^22.7.0",
+    "chai": "^4.4.1",
+    "express": "^4.21.1",
+    "mocha": "^10.6.0",
+    "nodemon": "^3.1.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.3"
+  }
+}
