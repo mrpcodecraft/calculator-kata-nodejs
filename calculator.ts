@@ -12,6 +12,6 @@ export default class Calculator {
 
 
     parseString(str: string): number[] {
-        return str.split(",").map(num => parseInt(num));
+        return str.split(/[,/\n]/).map(num => parseInt(num));
     }
 }
