@@ -25,4 +25,7 @@ describe("Test cases for calculator", () => {
         expect(add("1\n2,3")).to.equal(6);
     });
     
+    it("5) Test for string with custom delimiter and next line tag seperated multiple value", () => {
+        expect(add("//;\n1;2;5")).to.equal(8);
+    });
 });
