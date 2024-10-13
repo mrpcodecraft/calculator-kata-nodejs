@@ -19,6 +19,8 @@ export default class Calculator {
         
         let delimiters: string[] = this.fetchDelimiters(str);
         
+        let foundThousands: boolean = false;
+
         str = this.fetchFinalString(str, delimiters);
 
         str.split(',').map((num) => {
@@ -26,10 +28,11 @@ export default class Calculator {
 
             if (parsed < 0) {
                 negatives.push(parsed);
-            } else {
+            } else if (parsed < 1000) {
                 numbers.push(parsed);
             }
         });
+        
         if (negatives.length > 0) {
             throw new Error("Negative numbers not allowed: " + negatives.join(", "));
         }
