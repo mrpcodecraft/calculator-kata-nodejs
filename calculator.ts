@@ -6,12 +6,12 @@ const rl = readline.createInterface({
 
 export default class Calculator {
     add(str: string): number {
-        let number = str ? this.parseString(str) : 0;
-        return number;
+        let numbers = str ? this.parseString(str) : ["0"];
+        return eval(numbers.join("+"));
     }
 
 
-    parseString(str: string): number {
-        return parseInt(str);
+    parseString(str: string): number[] {
+        return str.split(",").map(num => parseInt(num));
     }
 }
